@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'br.com.fundatec'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "br.com.fundatec"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -65,4 +65,9 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    implementation 'com.squareup.picasso:picasso:2.8'
 }
