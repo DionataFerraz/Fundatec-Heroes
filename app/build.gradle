@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -44,9 +45,18 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    dataBinding {
+        enabled = true
+    }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
+//    kapt("com.android.databiding:compiler:3.1.4")
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

@@ -1,0 +1,2 @@
+int id iv_home 0x0
+int layout activity_home 0x0
