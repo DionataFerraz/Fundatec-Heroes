@@ -11,6 +11,7 @@ import br.com.fundatec.R
 import br.com.fundatec.databinding.ActivityLoginBinding
 import br.com.fundatec.login.HomeActivity
 import br.com.fundatec.login.presentation.LoginViewModel
+import br.com.fundatec.login.presentation.ViewState
 import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {
@@ -24,9 +25,22 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tvText.setOnClickListener {
-            showToast()
-            showSnack()
+        binding.etEmail.error = "Campo obrigatório"
+
+        configLoginButton()
+        viewModel.viewState.observe(this) { state ->
+            when (state) {
+                is ViewState.ShowError -> showSnack()
+            }
+        }
+    }
+
+    private fun configLoginButton() {
+        binding.btLogin.setOnClickListener {
+            viewModel.validateUserInput(
+                email = binding.etEmail.text.toString(),
+                password = binding.etPassword.text.toString(),
+            )
         }
     }
 
@@ -37,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showSnack() {
         val container = findViewById<ConstraintLayout>(R.id.container)
         Snackbar
-            .make(container, "Nosso Snackbar", Snackbar.LENGTH_LONG)
+            .make(container, "Deu ruim!", Snackbar.LENGTH_LONG)
             .setAction("Ok") {
                 val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                 startActivity(intent)
