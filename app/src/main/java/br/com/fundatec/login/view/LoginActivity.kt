@@ -3,13 +3,12 @@ package br.com.fundatec.login.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.fundatec.R
 import br.com.fundatec.databinding.ActivityLoginBinding
-import br.com.fundatec.login.HomeActivity
+import br.com.fundatec.home.view.HomeActivity
 import br.com.fundatec.login.presentation.LoginViewModel
 import br.com.fundatec.login.presentation.ViewState
 import com.google.android.material.snackbar.Snackbar
