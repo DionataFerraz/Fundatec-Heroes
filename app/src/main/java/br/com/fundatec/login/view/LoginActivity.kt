@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
+import br.com.fundatec.BottomNavigationActivity
 import br.com.fundatec.R
 import br.com.fundatec.databinding.ActivityLoginBinding
-import br.com.fundatec.home.view.HomeActivity
 import br.com.fundatec.login.presentation.LoginViewModel
 import br.com.fundatec.login.presentation.ViewState
 import com.google.android.material.snackbar.Snackbar
@@ -48,13 +48,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showSnack() {
+        val intent = Intent(this@LoginActivity, BottomNavigationActivity::class.java)
+        startActivity(intent)
+
         val container = findViewById<ConstraintLayout>(R.id.container)
         Snackbar
             .make(container, "Deu ruim!", Snackbar.LENGTH_LONG)
-            .setAction("Ok") {
-                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                startActivity(intent)
-            }
             .show()
     }
 }
