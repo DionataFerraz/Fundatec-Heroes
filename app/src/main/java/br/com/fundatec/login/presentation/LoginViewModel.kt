@@ -9,14 +9,12 @@ class LoginViewModel : ViewModel() {
     val viewState: LiveData<ViewState> = state
 
     fun validateUserInput(email: String?, password: String?) {
-        if (email.isNullOrEmpty() && password.isNullOrEmpty()) {
-            state.value = ViewState.ShowError
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            state.value = ViewState.ShowHome
         }
     }
 }
 
 sealed class ViewState {
-    object ShowError : ViewState()
-    object ShowErrorEmail : ViewState()
-    object ShowErrorPassword : ViewState()
+    object ShowHome : ViewState()
 }

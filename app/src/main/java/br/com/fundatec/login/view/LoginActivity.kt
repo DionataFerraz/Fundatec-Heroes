@@ -3,17 +3,26 @@ package br.com.fundatec.login.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.constraintlayout.widget.ConstraintLayout
-import br.com.fundatec.BottomNavigationActivity
-import br.com.fundatec.R
+import br.com.fundatec.character.view.Character
+import br.com.fundatec.character.view.NewCharacterActivity
 import br.com.fundatec.databinding.ActivityLoginBinding
 import br.com.fundatec.login.presentation.LoginViewModel
 import br.com.fundatec.login.presentation.ViewState
-import com.google.android.material.snackbar.Snackbar
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class LoginActivity : AppCompatActivity() {
+
+    private val moshi by lazy {
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+    }
+
+    private val character by lazy {
+        Character("Batman", 40)
+    }
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -24,12 +33,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val preferences = getSharedPreferences("bd", MODE_PRIVATE)
+        val characterString = moshi.adapter(Character::class.java).toJson(character)
+        preferences.edit().putString("character", characterString).commit()
+
         binding.etEmail.error = "Campo obrigatório"
 
         configLoginButton()
         viewModel.viewState.observe(this) { state ->
             when (state) {
-                is ViewState.ShowError -> showSnack()
+                is ViewState.ShowHome -> showSnack()
             }
         }
     }
@@ -43,17 +56,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun showToast() {
-        Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show()
-    }
-
     private fun showSnack() {
-        val intent = Intent(this@LoginActivity, BottomNavigationActivity::class.java)
+        val intent = Intent(this@LoginActivity, NewCharacterActivity::class.java)
         startActivity(intent)
-
-        val container = findViewById<ConstraintLayout>(R.id.container)
-        Snackbar
-            .make(container, "Deu ruim!", Snackbar.LENGTH_LONG)
-            .show()
     }
 }

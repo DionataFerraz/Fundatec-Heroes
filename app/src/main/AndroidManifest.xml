@@ -15,7 +15,7 @@
         android:theme="@style/Theme.HelloWorld"
         tools:targetApi="31">
         <activity
-            android:name=".BottomNavigationActivity"
+            android:name=".character.view.NewCharacterActivity"
             android:exported="false" />
         <activity
             android:name=".home.view.HomeActivity"
