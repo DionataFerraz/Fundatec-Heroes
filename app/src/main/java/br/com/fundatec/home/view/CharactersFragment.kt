@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import br.com.fundatec.R
 import br.com.fundatec.databinding.FragmentCharactersBinding
 
-private const val ARG_PARAM1 = "param1"
-
 class CharactersFragment : Fragment() {
     private lateinit var binding: FragmentCharactersBinding
+
+    private val list = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,20 +21,15 @@ class CharactersFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(
-        view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.run {
-            binding.tvName.text = getString(ARG_PARAM1)
-        }
+
+        val adapter = ListItemAdapter()
+        binding.list.adapter = adapter
+        adapter.setItems(list)
     }
 
     companion object {
-        fun newInstance(param1: String) =
-            CharactersFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
+        fun newInstance() = CharactersFragment()
     }
 }

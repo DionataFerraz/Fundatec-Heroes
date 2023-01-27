@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import br.com.fundatec.character.view.Character
-import br.com.fundatec.character.view.NewCharacterActivity
 import br.com.fundatec.databinding.ActivityLoginBinding
+import br.com.fundatec.home.view.HomeActivity
 import br.com.fundatec.login.presentation.LoginViewModel
 import br.com.fundatec.login.presentation.ViewState
 import com.squareup.moshi.Moshi
@@ -96,15 +96,16 @@ class LoginActivity : AppCompatActivity() {
 
     private fun configLoginButton() {
         binding.btLogin.setOnClickListener {
-            viewModel.validateUserInput(
-                email = binding.etEmail.text.toString(),
-                password = binding.etPassword.text.toString(),
-            )
+//            viewModel.validateUserInput(
+//                email = binding.etEmail.text.toString(),
+//                password = binding.etPassword.text.toString(),
+//            )
+            showSnack()
         }
     }
 
     private fun showSnack() {
-        val intent = Intent(this@LoginActivity, NewCharacterActivity::class.java)
+        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
         startActivity(intent)
     }
 }
