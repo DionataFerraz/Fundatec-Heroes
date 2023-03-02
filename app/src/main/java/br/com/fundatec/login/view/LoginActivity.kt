@@ -9,6 +9,7 @@ import br.com.fundatec.databinding.ActivityLoginBinding
 import br.com.fundatec.home.view.HomeActivity
 import br.com.fundatec.login.presentation.LoginViewModel
 import br.com.fundatec.login.presentation.ViewState
+import br.com.fundatec.profile.view.ProfileActivity
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
@@ -105,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showSnack() {
-        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+        val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
         startActivity(intent)
     }
 }
