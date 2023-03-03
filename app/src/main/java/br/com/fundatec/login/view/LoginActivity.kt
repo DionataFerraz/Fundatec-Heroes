@@ -97,11 +97,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun configLoginButton() {
         binding.btLogin.setOnClickListener {
-//            viewModel.validateUserInput(
-//                email = binding.etEmail.text.toString(),
-//                password = binding.etPassword.text.toString(),
-//            )
-            showSnack()
+            viewModel.validateUserInput(
+                email = binding.etEmail.text.toString(),
+                password = binding.etPassword.text.toString(),
+            )
         }
     }
 

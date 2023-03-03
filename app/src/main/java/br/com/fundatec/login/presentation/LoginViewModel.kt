@@ -3,7 +3,10 @@ package br.com.fundatec.login.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import br.com.fundatec.login.data.remote.LoginDataSource
 import br.com.fundatec.profile.data.local.LocalDatasource
+import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
 
@@ -15,8 +18,13 @@ class LoginViewModel : ViewModel() {
     val viewState: LiveData<ViewState> = state
 
     fun validateUserInput(email: String?, password: String?) {
-        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
-            state.value = ViewState.ShowHome
+        viewModelScope.launch {
+            if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+                val user = LoginDataSource().login(email, password)
+                if (user != null) {
+                    state.value = ViewState.ShowHome
+                }
+            }
         }
     }
 }
