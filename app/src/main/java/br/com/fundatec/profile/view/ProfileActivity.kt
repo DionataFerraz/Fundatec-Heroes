@@ -20,8 +20,3 @@ class ProfileActivity : AppCompatActivity() {
         viewModel.saveUser()
     }
 }
-
-// coisas que haviam faltado
-// estava faltando adicionar o App no manifest
-// estava faltando deixar as funções async, para rodar na main thread nós precisamos habilitar essa config no
-// FHDatabase allowMainThreadQueries()
