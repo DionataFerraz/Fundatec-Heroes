@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.fundatec.login.data.remote.LoginDataSource
+import br.com.fundatec.login.data.remote.LoginDataSourceImpl
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val loginDataSource: LoginDataSource) : ViewModel() {
 
     private val state = MutableLiveData<ViewState>()
     val viewState: LiveData<ViewState> = state
@@ -16,7 +17,7 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             state.value = ViewState.ShowLoading
             if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
-                val user = LoginDataSource().login(email, password)
+                val user = loginDataSource.login(email, password)
                 if (user.get() != null) {
                     state.value = ViewState.ShowHome
                 } else {

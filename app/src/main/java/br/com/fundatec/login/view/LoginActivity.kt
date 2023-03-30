@@ -4,26 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast.LENGTH_LONG
-import androidx.activity.viewModels
-import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import br.com.fundatec.R
-import br.com.fundatec.character.view.Character
 import br.com.fundatec.databinding.ActivityLoginBinding
 import br.com.fundatec.home.view.HomeActivity
 import br.com.fundatec.login.presentation.LoginViewModel
 import br.com.fundatec.login.presentation.ViewState
-import br.com.fundatec.profile.view.ProfileActivity
 import com.google.android.material.snackbar.Snackbar
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
