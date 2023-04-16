@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.fundatec.login.data.remote.LoginDataSource
-import br.com.fundatec.login.data.remote.LoginDataSourceImpl
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginDataSource: LoginDataSource) : ViewModel() {

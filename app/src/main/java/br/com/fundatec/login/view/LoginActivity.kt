@@ -10,6 +10,7 @@ import br.com.fundatec.databinding.ActivityLoginBinding
 import br.com.fundatec.home.view.HomeActivity
 import br.com.fundatec.login.presentation.LoginViewModel
 import br.com.fundatec.login.presentation.ViewState
+import br.com.fundatec.profile.view.ProfileActivity
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         configLoginButton()
+        configProfileButton()
         configObservers()
     }
 
@@ -45,6 +47,13 @@ class LoginActivity : AppCompatActivity() {
                 email = binding.etEmail.text.toString(),
                 password = binding.etPassword.text.toString(),
             )
+        }
+    }
+
+    private fun configProfileButton() {
+        binding.tvNewHere.setOnClickListener {
+            val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+            startActivity(intent)
         }
     }
 
